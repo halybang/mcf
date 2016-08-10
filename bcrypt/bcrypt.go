@@ -6,8 +6,8 @@
 package bcrypt
 
 import (
-	"code.google.com/p/go.crypto/bcrypt"
-	"github.com/gyepisam/mcf"
+	"golang.org/x/crypto/bcrypt"
+	"github.com/halybang/mcf"
 )
 
 // DefaultCost is the base 2 logarithm of the Bcrypt work factor

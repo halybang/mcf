@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/gyepisam/mcf/encoder"
+	"github.com/halybang/mcf/encoder"
 )
 
 type instance struct {

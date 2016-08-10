@@ -10,10 +10,10 @@ import (
 	"testing"
 
 	//import all encoders
-	"github.com/gyepisam/mcf"
-	_ "github.com/gyepisam/mcf/bcrypt"
-	_ "github.com/gyepisam/mcf/pbkdf2"
-	_ "github.com/gyepisam/mcf/scrypt"
+	"github.com/halybang/mcf"
+	_ "github.com/halybang/mcf/bcrypt"
+	_ "github.com/halybang/mcf/pbkdf2"
+	_ "github.com/halybang/mcf/scrypt"
 )
 
 var plain = "password"

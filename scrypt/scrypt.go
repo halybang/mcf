@@ -6,12 +6,12 @@
 package scrypt
 
 import (
-	"code.google.com/p/go.crypto/scrypt"
+	"golang.org/x/crypto/scrypt"
 
 	"fmt"
 
-	"github.com/gyepisam/mcf"
-	"github.com/gyepisam/mcf/bridge"
+	"github.com/halybang/mcf"
+	"github.com/halybang/mcf/bridge"
 )
 
 // Circa 2014 work factors.

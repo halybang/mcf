@@ -12,10 +12,10 @@ import (
 	"fmt"
 	"hash"
 
-	"code.google.com/p/go.crypto/pbkdf2"
+	"golang.org/x/crypto/pbkdf2"
 
-	"github.com/gyepisam/mcf"
-	"github.com/gyepisam/mcf/bridge"
+	"github.com/halybang/mcf"
+	"github.com/halybang/mcf/bridge"
 )
 
 // Hash represents the HMAC hash function that the PBKDF2 algorithm uses as a pseudorandom function.
@@ -73,11 +73,11 @@ type Config struct {
 // Default values. These are exported for documentation purposes.
 // See GetConfig() and SetConfig() on how to change them.
 const (
-	DefaultIterations = 2000
+	DefaultIterations = 25000
 
 	DefaultSaltLen = 16
 
-	DefaultPrf = SHA1
+	DefaultPrf = SHA512
 )
 
 // This value is exported for documentation purposes.
@@ -135,7 +135,7 @@ func register(config Config) error {
 	}
 
 	// the bridge handles the generic parts of the interface
-	enc := bridge.New([]byte("pbkdf2"), fn)
+	enc := bridge.New([]byte("pbkdf2-sha512"), fn)
 
 	return mcf.Register(mcf.PBKDF2, enc)
 }
@@ -167,16 +167,18 @@ func (c *Config) validate() error {
 
 // Keep these together
 // Note that Sscanf on %s breaks on space and must therefore be the last item (and the only string).
-const format = "keylen=%d,iterations=%d,hmac=%s"
+//const format = "keylen=%d,iterations=%d,hmac=%s"
+const format = "%d"
 
 // Params encodes algorithm parameters in a string for later use.
 func (c *Config) Params() string {
-	return fmt.Sprintf(format, c.KeyLen, c.Iterations, c.Hash)
+	//return fmt.Sprintf(format, c.KeyLen, c.Iterations, c.Hash)
+	return fmt.Sprintf(format, c.Iterations)
 }
 
 // SetParams extracts encoded algorithm parameters from the output of Params().
 func (c *Config) SetParams(params string) error {
-	_, err := fmt.Sscanf(params, format, &c.KeyLen, &c.Iterations, &c.Hash)
+	_, err := fmt.Sscanf(params, format, &c.Iterations)
 	if err != nil {
 		return err
 	}

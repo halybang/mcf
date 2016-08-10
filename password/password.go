@@ -130,9 +130,10 @@ func decode(encoded []byte) (dst []byte, err error) {
 		return dst[:n], err
 	}
 
-	enc := base64.StdEncoding
+    replace := bytes.Replace(encoded, []byte("."), []byte("+"), -1)
+    enc := base64.RawStdEncoding
 	dst = make([]byte, enc.DecodedLen(len(encoded)))
-	n, err := enc.Decode(dst, encoded)
+	n, err := enc.Decode(dst, replace)
 	return dst[:n], err
 }
 
@@ -145,8 +146,9 @@ func EncodeHex(in []byte) (out []byte) {
 
 // EncodeBase64 encodes the input bytes into standard base64 format.
 func EncodeBase64(in []byte) (out []byte) {
-	enc := base64.StdEncoding
+	enc := base64.RawStdEncoding
 	out = make([]byte, enc.EncodedLen(len(in)))
 	enc.Encode(out, in)
-	return out
+    replace := bytes.Replace(out, []byte("+"), []byte("."), -1)
+	return replace
 }

@@ -23,7 +23,7 @@ upgrade policies would find it especially useful.
 
 mcf can be installed with the command:
 
-    go get github.com/gyepisam/mcf
+    go get github.com/halybang/mcf
 
 #Example
 
@@ -31,8 +31,8 @@ Here is a simple example on how to use mcf to generate pbkdf2 hashed passwords.
 Note that the same example would work for any other scheme and multiple schemes
 can exist concurrently.
 
-    import "github.com/gyepisam/mcf"
-    import "github.com/gyepisam/mcf/pbkdf2"
+    import "github.com/halybang/mcf"
+    import "github.com/halybang/mcf/pbkdf2"
 
 
 To create a password, assuming you have the `username` and `plaintext` variables from a user signup session:
